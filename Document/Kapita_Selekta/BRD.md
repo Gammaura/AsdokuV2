@@ -146,3 +146,67 @@ flowchart LR
     A2_T1 -->|"Approved Blueprint"| A3
     A3 <-->|"Artifact Acceptance Loop"| A2_T2
     A2_T2 -->|"100% PASS"| U2
+```
+
+### 7.3. Ringkasan Perbandingan As-Is vs To-Be
+
+| Dimensi Perbandingan | Kondisi Saat Ini (*As-Is* Manual) | Kondisi Usulan (*To-Be* Sistem ASDOKU) |
+| :--- | :--- | :--- |
+| **Durasi Pengerjaan Format** | `[ISI DATA]` jam hingga berhari-hari per dokumen. | $\le$ `[ISI DATA]` detik per dokumen secara otomatis. |
+| **Pengaturan Section & Nomor Halaman** | Sering dipisah menjadi beberapa file Word berbeda karena gagal mengatur Romawi vs Latin. | Otomatis terbagi menjadi 3 Section terisolasi dalam 1 berkas `.docx` utuh. |
+| **Daftar Isi & Navigation Pane** | Diketik manual; *Navigation Pane* kosong karena tidak memakai *Heading Styles*. | Disuntikkan tag `<w:outlineLvl>` dan *Dynamic TOC Field* yang sinkron otomatis. |
+| **Standarisasi Tabel (APA 7)** | Mengedit garis batas (*borders*) satu per satu pada setiap tabel. | Seluruh tabel dirombak otomatis ke format APA 7 tanpa garis vertikal. |
+| **Penjaminan Mutu (*Quality Control*)** | Diperiksa manual secara kasatmata oleh mahasiswa dan dosen pembimbing. | Diaudit secara algoritmik melalui arsitektur *Two-Tier SQA* terhadap 8 kriteria mutu UEU. |
+
+---
+
+## 8. Assumptions & Constraints
+
+### 8.1. Asumsi (*Assumptions*)
+1. Pengguna mengunggah dokumen akademik dalam format `.docx` yang tidak terkunci kata sandi (*password-protected*) atau terenkripsi DRM.
+2. Struktur penulisan naskah akademik mengikuti kaidah bahasa Indonesia untuk karya ilmiah di lingkungan Universitas Esa Unggul (memiliki unsur bagian awal, batang tubuh bab pembahasan, dan bagian akhir).
+3. Pengguna memiliki perangkat lunak pengolah kata (seperti Microsoft Word) untuk membuka berkas hasil dan menyetujui pembaruan *field* Daftar Isi otomatis saat dokumen pertama kali dibuka.
+4. Lingkungan server tempat aplikasi dijalankan memiliki instalasi *runtime* Python beserta pustaka dependensi (`FastAPI`, `scikit-learn`, `python-docx`, `lxml`, `joblib`) yang telah terkonfigurasi.
+
+### 8.2. Batasan Sistem (*Constraints*)
+- **Batasan Regulasi:** Aturan tata letak, ukuran huruf, spasi, dan margin pada Agent 3 dikodekan secara spesifik mengacu pada SK Rektor Universitas Esa Unggul Nomor `[ISI DATA]` Tahun `[ISI DATA]` serta pedoman tabel APA 7th Edition.
+- **Batasan Teknis Page Rendering:** Karena manipulasi dilakukan langsung pada tingkat struktur XML (`.docx`) tanpa membuka antarmuka grafis Microsoft Word (*headless XML manipulation*), perhitungan nomor halaman aktual pada Daftar Isi diserahkan pada mesin *layout rendering* Word melalui instruksi `<w:updateFields w:val="true"/>`.
+- **Batasan Dataset Pelatihan:** Kemampuan klasifikasi awal Agent 1 bergantung pada cakupan distribusi data pada `[ISI DATA]` sampel di dalam 7 pilar dataset akademik UEU sebelum diperkaya lebih lanjut oleh siklus *Active Learning*.
+
+---
+
+## 9. Risk Register (Daftar Risiko & Mitigasi)
+
+Berikut adalah analisis risiko teknis dan operasional selama pengembangan maupun pengoperasian sistem ASDOKU beserta strategi mitigasinya:
+
+| ID | Deskripsi Risiko | Probabilitas | Dampak | Strategi Mitigasi (Solusi Arsitektural) |
+| :--- | :--- | :---: | :---: | :--- |
+| **RSK-01** | **False Positive Pergantian Bab pada Sub-bab 1.7 (Sistematika Penulisan):** Penjelasan rincian "Bab I, Bab II, Bab III" di dalam sub-bab 1.7 terdeteksi sebagai judul bab baru sehingga merusak urutan bab dokumen. | Tinggi | Tinggi | Menerapkan Isolasi Zona Sistematika Penulisan dan *Guardrail* pada Agent 2 yang menolak pembuatan bab baru jika paragraf ber-*style* Heading 2, diawali nomor 1.x, memuat lebih dari satu bab dalam satu baris, atau mengandung kata kerja naratif (membahas, berisi, menjelaskan). |
+| **RSK-02** | **False Negative Judul Bab pada Dokumen Non-Skripsi (Laporan Magang/MBKM):** Nama bab seperti `BAB 3 PROFIL PERUSAHAAN` atau `BAB 4 RISET DAN PEMBAHASAN` tidak dikenali sebagai Heading 1 karena tidak ada di kamus skripsi standar, menyebabkan penomoran sub-bab membengkak (misal hingga 2.26). | Tinggi | Tinggi | Menerapkan *Regex Priority Pattern* (`^BAB\s+([IVX\d]+)`) dan aturan Preservasi Style Word pada Agent 2 sehingga setiap baris yang diawali pola kata "BAB" dan angka/Romawi langsung dikunci sebagai `JUDUL_BAB` (Heading 1) tanpa terhalang kamus kata statis. |
+| **RSK-03** | **Penomoran Ganda (*Double Numbering*) Akibat Bawaan Template Kotor:** Paragraf sub-bab pada dokumen mentah sudah memiliki *auto-numbering* XML bawaan (`<w:numPr>`) sehingga ketika diformat ulang menghasilkan nomor ganda (misal `1.1 1.1 Latar Belakang`). | Sedang | Tinggi | Menerapkan prosedur Sanitasi Total Template pada Agent 3 yang secara otomatis melucuti seluruh elemen `<w:numPr>` dan mereset indentasi liar sebelum menyuntikkan format penomoran standar UEU. |
+| **RSK-04** | **Baris Rumus / Persamaan Matematika Terformat Menjadi Sub-bab:** Notasi rumus atau penomoran persamaan (2.1) salah dikenali oleh model ML sebagai sub-bab Heading 2. | Sedang | Sedang | Menambahkan dataset khusus (Dataset 6: Code & Formulas) pada pelatihan Agent 1 serta menyematkan Filter Persamaan & Formula Matematika pada Agent 2 (*Quality Critic*). |
+| **RSK-05** | **Degradasi Performa Model Akibat Data Active Learning yang Bias:** Masuknya sampel umpan balik yang keliru ke dalam *pool* pelatihan ulang dapat menurunkan akurasi model dasar. | Rendah | Sedang | Hanya mengizinkan penyimpanan data *Active Learning* dari hasil koreksi deterministik Agent 2 yang telah lulus validasi SQA Tier 1, serta memisahkan dataset latih murni (`build_pure_training_data.py`). |
+
+---
+
+## 10. Acceptance Criteria (Kriteria Penerimaan Sistem)
+
+Sistem ASDOKU dinyatakan selesai, layak, dan dapat diterima (*Accepted*) untuk kebutuhan pengujian Tugas Akhir apabila memenuhi seluruh kriteria penerimaan berikut:
+
+### 10.1. Kriteria Penerimaan Model NLP & Machine Learning (SQA Tier 1)
+- [ ] Pipeline ekstraksi fitur berhasil mengekstraksi `[ISI DATA]` dimensi fitur gabungan (TF-IDF + OpenXML) tanpa kegagalan (*runtime error*).
+- [ ] Model utama (Random Forest) mencapai nilai Accuracy minimal `[ISI DATA]`% dan mengungguli model pembanding (Logistic Regression) pada pengujian dataset evaluasi.
+- [ ] Agent 2 (*Quality Critic*) berhasil mendeteksi dan memperbaiki 100% anomali urutan bab monotonik, melindungi zona sub-bab 1.7, serta mengenali seluruh bab pada dokumen Skripsi maupun Laporan Magang.
+
+### 10.2. Kriteria Penerimaan Mutu Artifak Dokumen (SQA Tier 2 — 8 Kriteria Mutu UEU)
+- [ ] **AC-01 (Margin):** Seluruh seksi dokumen memiliki batas margin Kiri `[ISI DATA]` cm, Atas `[ISI DATA]` cm, Kanan `[ISI DATA]` cm, dan Bawah `[ISI DATA]` cm.
+- [ ] **AC-02 (Dual Page Numbering):** Bagian Frontmatter menggunakan angka Romawi kecil (i, ii, iii) di tengah bawah, dan bagian Batang Tubuh (Bab I–V) menggunakan angka Latin (1, 2, 3) mulai dari 1 secara independen.
+- [ ] **AC-03 (Heading 1):** Seluruh judul bab berformat Times New Roman `[ISI DATA]` pt, Bold, ALL CAPS, rata tengah mutlak (*Center*) tanpa offset indentasi, dan terdaftar di *Navigation Pane*.
+- [ ] **AC-04 (Heading 2 & 3):** Seluruh sub-bab berformat Times New Roman `[ISI DATA]` pt, Bold, rata kiri dengan tab stop `[ISI DATA]` cm, dan terdaftar di *Navigation Pane*.
+- [ ] **AC-05 (Spasi & Paragraf):** Seluruh paragraf isi memiliki Spacing Before/After `[ISI DATA]` pt, Line Spacing `[ISI DATA]`, perataan *Justify*, dan indentasi baris pertama `[ISI DATA]` cm.
+- [ ] **AC-06 (Ukuran Kertas):** Seluruh halaman menggunakan ukuran kertas standar A4 (`[ISI DATA]` $\times$ `[ISI DATA]` cm) dengan preservasi orientasi *Portrait / Landscape*.
+- [ ] **AC-07 (Header Resmi):** Terdapat teks header "Universitas Esa Unggul" di posisi kanan atas pada seluruh halaman kecuali halaman Sampul (*Cover*).
+- [ ] **AC-08 (Tabel APA 7):** Seluruh tabel dalam dokumen bebas dari garis batas vertikal dan hanya memiliki 3 garis horizontal utama sesuai standar APA 7th Edition.
+
+### 10.3. Kriteria Penerimaan Pengujian Empiris (Gold Datasets)
+- [ ] Seluruh `[ISI DATA]` dokumen uji emas (P1 hingga P5) berhasil diproses hingga tuntas dengan skor kepatuhan SQA Tier 2 = `[ISI DATA]`% (PASS) dan waktu pemrosesan rata-rata di bawah `[ISI DATA]` detik per dokumen.
