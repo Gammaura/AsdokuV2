@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-10-21T00:35:00.000Z" agent="Antigravity AI" version="21.0.0" type="device">
+  <diagram id="ASDOKU-MAS-Flowchart" name="Alur Proses ASDOKU Tri-Agent">
+    <mxGraphModel dx="1422" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="G1" value="&lt;b&gt;1. INPUT DATA &amp;amp; PREPROCESSING&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1565C0;fontColor=#0D47A1;fontStyle=1;startSize=30;rounded=1;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="280" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="G2" value="&lt;b&gt;2. EKSEKUSI ALGORITMA TRI-AGENT &amp;amp; TWO-TIER SQA&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F57F17;fontColor=#E65100;fontStyle=1;startSize=30;rounded=1;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="460" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="G3" value="&lt;b&gt;3. EVALUASI METRIK &amp;amp; ACTIVE LEARNING LOOP&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;fontColor=#880E4F;fontStyle=1;startSize=30;rounded=1;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="860" y="40" width="360" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="G4" value="&lt;b&gt;4. OUTPUT VISUAL &amp;amp; WEB STUDIO&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E0F2F1;strokeColor=#00695C;fontColor=#004D40;fontStyle=1;startSize=30;rounded=1;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="860" y="640" width="360" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="start" value="Mulai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1976D2;fontStyle=1;fontColor=#0D47A1;" vertex="1" parent="1">
+          <mxGeometry x="115" y="80" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="upload" value="Unggah Dokumen Mentah (.docx)&lt;br/&gt;via Web Interface FastAPI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1565C0;fontColor=#0D47A1;" vertex="1" parent="1">
+          <mxGeometry x="75" y="160" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="parse" value="Non-Destructive XML Parsing&lt;br/&gt;(Ekstraksi Paragraf, Tabel &amp;amp; Objek)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1565C0;fontColor=#0D47A1;" vertex="1" parent="1">
+          <mxGeometry x="75" y="260" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="feat" value="Hybrid Feature Engineering (420 Dimensi):&lt;br/&gt;• 400 Fitur NLP (TF-IDF N-Gram 1,2)&lt;br/&gt;• 20 Fitur Metadata OpenXML" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1565C0;fontColor=#0D47A1;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="360" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a1_infer" value="&lt;b&gt;Agent 1 (Inspector):&lt;/b&gt;&lt;br/&gt;Inferensi Model Random Forest&lt;br/&gt;&amp;amp; Hitung Confidence Score" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="480" y="80" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="check_conf" value="Confidence &amp;lt; 0.70?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontColor=#BF360C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="170" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="flag_amb" value="Tandai Status:&lt;br/&gt;is_ambiguous = True" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#C62828;fontColor=#B71C1C;" vertex="1" parent="1">
+          <mxGeometry x="400" y="240" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="draft_bp" value="Terbitkan &lt;b&gt;Draft Blueprint&lt;/b&gt;&lt;br/&gt;Struktur Dokumen" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2E7D32;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="510" y="310" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a2_t1" value="&lt;b&gt;Agent 2 (Quality Critic - SQA Tier 1):&lt;/b&gt;&lt;br/&gt;Audit Urutan Bab Monotonik &amp;amp;&lt;br/&gt;5 Lapisan Guardrail (Zona 1.7, Magang, Rumus)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F57F17;fontColor=#E65100;" vertex="1" parent="1">
+          <mxGeometry x="460" y="390" width="260" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="chk_t1" value="Blueprint Konsisten&lt;br/&gt;100%?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontColor=#BF360C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="515" y="480" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="feedback" value="Kirim Feedback Directives &amp;amp;&lt;br/&gt;Contextual Re-Inspection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#C62828;fontColor=#B71C1C;" vertex="1" parent="1">
+          <mxGeometry x="400" y="550" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="app_bp" value="Terbitkan &lt;b&gt;APPROVED BLUEPRINT&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;fontColor=#1B5E20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="620" width="180" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="a3_format" value="&lt;b&gt;Agent 3 (Formatting Actuator):&lt;/b&gt;&lt;br/&gt;Sanitasi numPr &amp;amp; Rekonstruksi OpenXML:&lt;br/&gt;• Cover Resmi UEU &amp;amp; Logo 3 cm&lt;br/&gt;• 3-Section Division &amp;amp; Dual Page Numbering&lt;br/&gt;• Injeksi Heading 1-3 &amp;amp; Dynamic TOC&lt;br/&gt;• Standardisasi Tabel APA 7 (Tanpa Garis Vertikal)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#6A1B9A;fontColor=#4A148C;align=left;" vertex="1" parent="1">
+          <mxGeometry x="440" y="690" width="300" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="a2_t2" value="&lt;b&gt;Agent 2 (SQA Tier 2 Quality Gate):&lt;/b&gt;&lt;br/&gt;Audit Fisik .docx terhadap 8 Kriteria Mutu&lt;br/&gt;SK Rektor UEU No. 5 Tahun 2018" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#F57F17;fontColor=#E65100;" vertex="1" parent="1">
+          <mxGeometry x="460" y="810" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="chk_t2" value="Skor SQA =&lt;br/&gt;100% PASS?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontColor=#BF360C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="515" y="890" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="auto_rem" value="Instruksi Auto-Remediasi&lt;br/&gt;Elemen XML ke Agent 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#C62828;fontColor=#B71C1C;" vertex="1" parent="1">
+          <mxGeometry x="700" y="895" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="save_al" value="Simpan Sampel Koreksi &amp;amp; 20 Fitur&lt;br/&gt;ke active_learning_feedback.csv" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#C2185B;fontColor=#880E4F;" vertex="1" parent="1">
+          <mxGeometry x="920" y="80" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="chk_pool" value="Jumlah Feedback&lt;br/&gt;&amp;gt;= 5 Sampel?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontColor=#BF360C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="160" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="retrain" value="Continuous Retraining Model&lt;br/&gt;&amp;amp; Evaluasi Metrik (Puncak Akurasi 97.22%)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#C2185B;fontColor=#880E4F;" vertex="1" parent="1">
+          <mxGeometry x="920" y="250" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hot_reload" value="Export baseline_model.joblib &amp;amp;&lt;br/&gt;Hot-Reload ke Memori Agent 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;fontColor=#1B5E20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="330" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="calc_metrics" value="&lt;b&gt;Kompilasi Metrik Eksekusi:&lt;/b&gt;&lt;br/&gt;• Waktu Proses (Rata-rata 0.98 Detik)&lt;br/&gt;• Skor SQA Tier 1 &amp;amp; Tier 2 (100% PASS)&lt;br/&gt;• Statistik Struktur Paragraf" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#C2185B;fontColor=#880E4F;align=left;" vertex="1" parent="1">
+          <mxGeometry x="920" y="420" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="render_ui" value="Tampilkan Hasil di Web UI (alat.html):&lt;br/&gt;• Live Execution Terminal Log&lt;br/&gt;• SQA Score Card (100% PASS)&lt;br/&gt;• Ringkasan Deteksi Bab &amp;amp; Tabel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#00695C;fontColor=#004D40;align=left;" vertex="1" parent="1">
+          <mxGeometry x="920" y="690" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="download" value="Unduh Dokumen Rekonstruksi:&lt;br/&gt;&lt;b&gt;(Asdoku) - Nama_File.docx&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2F1;strokeColor=#00695C;fontColor=#004D40;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="790" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="end_node" value="Selesai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#80CBC4;strokeColor=#004D40;fontStyle=1;fontColor=#004D40;" vertex="1" parent="1">
+          <mxGeometry x="975" y="870" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="strokeColor=#1565C0;strokeWidth=2;" edge="1" parent="1" source="start" target="upload">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="strokeColor=#1565C0;strokeWidth=2;" edge="1" parent="1" source="upload" target="parse">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="strokeColor=#1565C0;strokeWidth=2;" edge="1" parent="1" source="parse" target="feat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="strokeColor=#1565C0;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="feat" target="a1_infer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="strokeColor=#2E7D32;strokeWidth=2;" edge="1" parent="1" source="a1_infer" target="check_conf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="Ya" style="strokeColor=#C62828;strokeWidth=2;" edge="1" parent="1" source="check_conf" target="flag_amb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="Tidak" style="strokeColor=#2E7D32;strokeWidth=2;" edge="1" parent="1" source="check_conf" target="draft_bp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="strokeColor=#C62828;strokeWidth=1;" edge="1" parent="1" source="flag_amb" target="draft_bp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="" style="strokeColor=#2E7D32;strokeWidth=2;" edge="1" parent="1" source="draft_bp" target="a2_t1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="" style="strokeColor=#F57F17;strokeWidth=2;" edge="1" parent="1" source="a2_t1" target="chk_t1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="Tidak" style="strokeColor=#C62828;strokeWidth=2;" edge="1" parent="1" source="chk_t1" target="feedback">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="" style="strokeColor=#C62828;strokeWidth=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="feedback" target="a2_t1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="Ya (Valid)" style="strokeColor=#2E7D32;strokeWidth=2;" edge="1" parent="1" source="chk_t1" target="app_bp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" value="" style="strokeColor=#6A1B9A;strokeWidth=2;" edge="1" parent="1" source="app_bp" target="a3_format">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" value="" style="strokeColor=#6A1B9A;strokeWidth=2;" edge="1" parent="1" source="a3_format" target="a2_t2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" value="" style="strokeColor=#F57F17;strokeWidth=2;" edge="1" parent="1" source="a2_t2" target="chk_t2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" value="Tidak" style="strokeColor=#C62828;strokeWidth=2;" edge="1" parent="1" source="chk_t2" target="auto_rem">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e18" value="" style="strokeColor=#C62828;strokeWidth=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="auto_rem" target="a3_format">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" value="Koreksi Label" style="strokeColor=#C2185B;strokeWidth=1;dashed=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="app_bp" target="save_al">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e20" value="" style="strokeColor=#C2185B;strokeWidth=2;" edge="1" parent="1" source="save_al" target="chk_pool">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e21" value="Ya" style="strokeColor=#C2185B;strokeWidth=2;" edge="1" parent="1" source="chk_pool" target="retrain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e22" value="" style="strokeColor=#C2185B;strokeWidth=2;" edge="1" parent="1" source="retrain" target="hot_reload">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e23" value="Update Model" style="strokeColor=#2E7D32;strokeWidth=1;dashed=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="hot_reload" target="a1_infer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e24" value="100% PASS" style="strokeColor=#00695C;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="chk_t2" target="calc_metrics">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e25" value="" style="strokeColor=#00695C;strokeWidth=2;" edge="1" parent="1" source="calc_metrics" target="render_ui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e26" value="" style="strokeColor=#00695C;strokeWidth=2;" edge="1" parent="1" source="render_ui" target="download">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e27" value="" style="strokeColor=#00695C;strokeWidth=2;" edge="1" parent="1" source="download" target="end_node">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

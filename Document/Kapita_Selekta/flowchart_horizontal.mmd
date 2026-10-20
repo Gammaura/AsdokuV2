@@ -1,0 +1,39 @@
+flowchart LR
+    %% ==========================================
+    %% DEFINISI STYLING NODE (WARNA AKADEMIK RAPI)
+    %% ==========================================
+    classDef inputStyle fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef agent1Style fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef agent2Style fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef agent3Style fill:#F3E5F5,stroke:#6A1B9A,stroke-width:2px,color:#4A148C
+    classDef evalStyle fill:#FCE4EC,stroke:#C2185B,stroke-width:2px,color:#880E4F
+    classDef uiStyle fill:#E0F2F1,stroke:#00695C,stroke-width:2px,color:#004D40
+
+    subgraph IN ["1. Input & Preprocessing"]
+        A["Dokumen Mentah (.docx)"] --> B["Ekstraksi 420 Fitur<br/>(400 TF-IDF + 20 OpenXML)"]
+    end
+
+    subgraph MAS ["2. Eksekusi Tri-Agent & Two-Tier SQA"]
+        B --> C["Agent 1: Inspector<br/>(Random Forest Classifier)"]
+        C <-->|"SQA Tier 1:<br/>5 Guardrails"| D["Agent 2: Quality Critic<br/>(Gatekeeper & Auditor)"]
+        D -->|"Approved<br/>Blueprint"| E["Agent 3: Actuator<br/>(OpenXML Rebuilder)"]
+        E <-->|"SQA Tier 2:<br/>8 Kriteria UEU"| D
+    end
+
+    subgraph EVAL ["3. Evaluasi & Active Learning"]
+        D -. "Koreksi Label" .-> F["Active Learning Pool<br/>(Retrain & Hot-Reload)"]
+        F -.-> C
+        D --> G["Evaluasi Metrik:<br/>Akurasi 97.22% | SQA 100% PASS"]
+    end
+
+    subgraph OUT ["4. Output & Web UI"]
+        G --> H["Web Studio FastAPI:<br/>Log, SQA Card & Download<br/>(Asdoku) - Hasil.docx"]
+    end
+
+    %% PENERAPAN CLASS STYLING
+    class A,B inputStyle
+    class C agent1Style
+    class D agent2Style
+    class E agent3Style
+    class F,G evalStyle
+    class H uiStyle
