@@ -1,85 +1,121 @@
 let selectedFile = null;
 
-        function handleFileSelect(e) {
-            const files = e.target.files;
-            if (files && files[0]) {
-                selectedFile = files[0];
-                const fileInfo = document.getElementById('file-info');
-                fileInfo.style.display = 'inline-flex';
-                fileInfo.className = 'file-pill';
-                fileInfo.innerHTML = `${selectedFile.name} &nbsp;•&nbsp; ${(selectedFile.size/1024).toFixed(1)} KB`;
-                document.getElementById('dz-title').innerText = selectedFile.name;
-                document.getElementById('dz-subtitle').innerText = "Berkas terpilih. Klik tombol 'Mulai Rapikan Dokumen' di bawah untuk memproses.";
-                document.getElementById('btn-process').disabled = false;
-            }
+function handleFileSelect(e) {
+    const files = e.target.files;
+    if (files && files[0]) {
+        selectedFile = files[0];
+        const fileInfo = document.getElementById('file-info');
+        fileInfo.style.display = 'inline-flex';
+        
+        const sizeMB = (selectedFile.size / (1024 * 1024)).toFixed(1);
+        const isVercel = window.location.hostname.includes("vercel.app");
+
+        if (isVercel && selectedFile.size > 4.5 * 1024 * 1024) {
+            fileInfo.className = 'file-pill';
+            fileInfo.style.background = '#fee2e2';
+            fileInfo.style.color = '#991b1b';
+            fileInfo.style.border = '1px solid #f87171';
+            fileInfo.innerHTML = `⚠️ ${selectedFile.name} &nbsp;•&nbsp; ${sizeMB} MB (Melebihi limit Vercel 4.5 MB)`;
+            document.getElementById('dz-title').innerText = selectedFile.name;
+            document.getElementById('dz-subtitle').innerHTML = `<span style="color: #b91c1c; font-weight: 600;">Ukuran berkas (${sizeMB} MB) melebihi batas upload Vercel Serverless (maks 4.5 MB). Silakan kompres gambar di Word terlebih dahulu atau gunakan server lokal.</span>`;
+            document.getElementById('btn-process').disabled = true;
+            return;
         }
 
-        // Drag & Drop Listeners
-        const dz = document.getElementById('dropzone');
-        if (dz) {
-            ['dragenter', 'dragover'].forEach(eventName => {
-                dz.addEventListener(eventName, (e) => {
-                    e.preventDefault();
-                    dz.classList.add('dragover');
-                }, false);
-            });
-            ['dragleave', 'drop'].forEach(eventName => {
-                dz.addEventListener(eventName, (e) => {
-                    e.preventDefault();
-                    dz.classList.remove('dragover');
-                }, false);
-            });
-            dz.addEventListener('drop', (e) => {
-                const dt = e.dataTransfer;
-                if (dt.files && dt.files[0]) {
-                    document.getElementById('file-input').files = dt.files;
-                    handleFileSelect({ target: { files: dt.files } });
-                }
-            }, false);
+        fileInfo.className = 'file-pill';
+        fileInfo.style.background = '';
+        fileInfo.style.color = '';
+        fileInfo.style.border = '';
+        fileInfo.innerHTML = `${selectedFile.name} &nbsp;•&nbsp; ${(selectedFile.size/1024).toFixed(1)} KB`;
+        document.getElementById('dz-title').innerText = selectedFile.name;
+        document.getElementById('dz-subtitle').innerText = "Berkas terpilih. Klik tombol 'Mulai Rapikan Dokumen' di bawah untuk memproses.";
+        document.getElementById('btn-process').disabled = false;
+    }
+}
+
+// Drag & Drop Listeners
+const dz = document.getElementById('dropzone');
+if (dz) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dz.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dz.classList.add('dragover');
+        }, false);
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+        dz.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dz.classList.remove('dragover');
+        }, false);
+    });
+    dz.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        if (dt.files && dt.files[0]) {
+            document.getElementById('file-input').files = dt.files;
+            handleFileSelect({ target: { files: dt.files } });
         }
+    }, false);
+}
 
-        async function processDocument() {
-            if (!selectedFile) return;
+async function processDocument() {
+    if (!selectedFile) return;
 
-            const btn = document.getElementById('btn-process');
-            const btnText = document.getElementById('btn-text');
-            const btnSpinner = document.getElementById('btn-spinner');
-            const resultsArea = document.getElementById('results-area');
+    const isVercel = window.location.hostname.includes("vercel.app");
+    if (isVercel && selectedFile.size > 4.5 * 1024 * 1024) {
+        alert(`Ukuran berkas (${(selectedFile.size / (1024 * 1024)).toFixed(1)} MB) melebihi batas upload Vercel Serverless (maksimal 4.5 MB).\n\nSolusi:\n1. Buka berkas di Word, pilih gambar > Picture Format > Compress Pictures.\n2. Atau jalankan Asdoku di server lokal (localhost:8000) tanpa batas ukuran.`);
+        return;
+    }
 
-            btn.disabled = true;
-            btnText.style.display = 'none';
-            btnSpinner.style.display = 'inline';
+    const btn = document.getElementById('btn-process');
+    const btnText = document.getElementById('btn-text');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const resultsArea = document.getElementById('results-area');
 
-            // Reset Agents UI Status
-            setAgentStatus(1, "running");
-            setAgentStatus(2, "idle");
-            setAgentStatus(3, "idle");
+    btn.disabled = true;
+    btnText.style.display = 'none';
+    btnSpinner.style.display = 'inline';
 
-            const formData = new FormData();
-            formData.append('file', selectedFile);
+    // Reset Agents UI Status
+    setAgentStatus(1, "running");
+    setAgentStatus(2, "idle");
+    setAgentStatus(3, "idle");
 
-            try {
-                // Step 1: Inspector UI simulation
-                await new Promise(r => setTimeout(r, 400));
-                setAgentStatus(1, "done");
-                setAgentStatus(2, "running");
+    const formData = new FormData();
+    formData.append('file', selectedFile);
 
-                // Step 2: Critic UI simulation
-                await new Promise(r => setTimeout(r, 400));
-                setAgentStatus(2, "done");
-                setAgentStatus(3, "running");
+    try {
+        // Step 1: Inspector UI simulation
+        await new Promise(r => setTimeout(r, 400));
+        setAgentStatus(1, "done");
+        setAgentStatus(2, "running");
 
-                const response = await fetch('/api/format', {
-                    method: 'POST',
-                    body: formData
-                });
+        // Step 2: Critic UI simulation
+        await new Promise(r => setTimeout(r, 400));
+        setAgentStatus(2, "done");
+        setAgentStatus(3, "running");
 
-                if (!response.ok) {
+        const response = await fetch('/api/format', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            let errMsg = "Gagal memproses dokumen";
+            if (response.status === 413) {
+                errMsg = `Ukuran berkas (${(selectedFile.size / (1024 * 1024)).toFixed(1)} MB) melebihi batas maksimal Vercel Serverless (4.5 MB). Silakan kompres gambar di dokumen Word atau gunakan server lokal.`;
+            } else {
+                try {
                     const err = await response.json();
-                    throw new Error(err.detail || "Gagal memproses dokumen");
+                    errMsg = err.detail || errMsg;
+                } catch (e) {
+                    const rawText = await response.text();
+                    errMsg = rawText || `HTTP ${response.status}: ${response.statusText}`;
                 }
+            }
+            throw new Error(errMsg);
+        }
 
-                const data = await response.json();
+        const data = await response.json();
 
                 // All Agents Done
                 setAgentStatus(1, "done");
