@@ -1,0 +1,226 @@
+<div class="hero-section">
+                <div class="hero-badge">ACADEMIC & TECHNICAL GLOSSARY</div>
+                <h1 class="hero-title">Glosarium Istilah Ilmiah & Konsep Sistem</h1>
+                <p class="hero-subtitle">
+                    Kamus referensi konseptual mencakup pengertian formal algoritma machine learning, pemrosesan bahasa alami (NLP), rekayasa OpenXML Word, serta arsitektur Multi-Agent System.
+                </p>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Kategori 1: Machine Learning & NLP -->
+                <div class="bento-card col-span-12">
+                    <div class="card-header-clean">
+                        <div class="pill-badge badge-blue">KATEGORI 1 &bull; KECERDASAN BUATAN & NLP</div>
+                        <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary-blue);">Algoritma, Fitur Teks, & Metrik Evaluasi</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
+                        <!-- Item 1: Random Forest -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Random Forest</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Model Utama AI</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Model pembelajaran mesin utama yang menggabungkan analisis puluhan hingga ratusan pohon keputusan (<em>Decision Trees</em>) secara serentak. Keputusan akhir ditentukan melalui kesepakatan suara terbanyak (<em>majority voting</em>). Model ini dipilih karena sangat stabil, tidak mudah terkecoh data anomali (<em>overfitting</em>), dan mampu membaca hubungan antara teks dan format ukuran huruf secara akurat.
+                            </p>
+                        </div>
+
+                        <!-- Item 2: Logistic Regression -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Logistic Regression</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Model Pembanding</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Model klasifikasi statistik dasar yang memisahkan kategori data menggunakan garis lurus (<em>linear</em>). Model ini digunakan sebagai pembanding awal (<em>baseline</em>). Namun, karena naskah skripsi memiliki format yang saling bertumpuk (misalnya sub-bab dan paragraf isi sama-sama berukuran 12pt), batas linear model ini kurang mampu membedakan kategori secara presisi sehingga akurasinya lebih rendah dibanding Random Forest.
+                            </p>
+                        </div>
+
+                        <!-- Item 3: TF-IDF -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">TF-IDF (Term Frequency - Inverse Document Frequency)</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Bobot Kata Teks</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Metode untuk menilai seberapa penting suatu kata dalam naskah. Kata yang sering muncul pada bagian tertentu namun jarang di bagian lain (seperti "Pendahuluan" atau "Kesimpulan") diberi nilai bobot tinggi karena menjadi penanda khas bab. Sebaliknya, kata hubung umum ("dan", "yang", "di") diberi bobot mendekati nol karena tidak mencerminkan struktur naskah.
+                            </p>
+                        </div>
+
+                        <!-- Item 4: N-gram -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">N-gram (N-gram 1–2)</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Kombinasi Kata</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Teknik membaca susunan kata yang berdampingan dalam naskah agar sistem memahami frasa utuh:
+                                <br>&bull; <strong>1-gram (Kata Tunggal):</strong> Membaca kata per kata, misalnya kata "Latar".
+                                <br>&bull; <strong>2-gram (Pasangan Kata):</strong> Membaca dua kata berdampingan, misalnya "Latar Belakang".
+                                <br>Dengan membaca pasangan kata, kecerdasan buatan tidak salah mengenali frasa baku judul bab naskah skripsi.
+                            </p>
+                        </div>
+
+                        <!-- Item 5: Class Imbalance & Balanced Weights -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Class Imbalance & Balanced Weights</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Keseimbangan Data</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Kondisi ketimpangan frekuensi jenis paragraf dalam naskah skripsi. Paragraf isi mendominasi lebih dari 75% naskah, sementara judul keterangan tabel atau gambar hanya sekitar 3%. Agar kategori minoritas tidak diabaikan, sistem menerapkan <em>Balanced Weights</em>, yaitu memberi perhatian dan bobot penilaian lebih tinggi pada kategori yang sedikit agar tetap terdeteksi dengan tepat.
+                            </p>
+                        </div>
+
+                        <!-- Item 6: Active Learning Loop -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Active Learning Loop</div>
+                                <span class="pill-badge badge-emerald" style="font-size: 0.65rem;">Belajar Mandiri</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Mekanisme cerdas di mana sistem secara mandiri belajar dari koreksi yang terjadi. Ketika Agent 2 (Quality Critic) menemukan dan membetulkan urutan bab yang keliru, data koreksi tersebut otomatis disimpan ke laci data latih baru. Model kecerdasan buatan kemudian memperbarui pengetahuannya di latar belakang tanpa perlu dilatih ulang secara manual.
+                            </p>
+                        </div>
+
+                        <!-- Item 7: Precision, Recall, & F1-Score -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Precision, Recall, & F1-Score</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Tolok Ukur Evaluasi</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Tiga tolok ukur evaluasi ilmiah untuk menguji ketelitian model kecerdasan buatan:
+                                <br>&bull; <strong>Precision (Ketepatan Prediksi):</strong> Dari seluruh paragraf yang ditebak sistem sebagai judul bab, berapa persen yang tebakannya terbukti tepat (mengukur seberapa bersih model dari salah tebak).
+                                <br>&bull; <strong>Recall (Kelengkapan Temuan):</strong> Dari seluruh judul bab asli yang ada di naskah, berapa persen yang berhasil ditemukan sistem (memastikan tidak ada judul yang terlewat).
+                                <br>&bull; <strong>F1-Score:</strong> Nilai keseimbangan antara ketepatan (*Precision*) dan kelengkapan (*Recall*). Nilai 1,00 (atau 100%) menandakan deteksi sempurna tanpa salah tebak dan tanpa ada yang terlewat.
+                            </p>
+                        </div>
+
+                        <!-- Item 8: Zero Cross-Contamination -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Zero Cross-Contamination</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Kejujuran Data</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Prinsip integritas pengujian ilmiah untuk mencegah kebocoran data (<em>data leakage</em>). Naskah yang dipakai untuk melatih model (<em>data latih</em>) dipisahkan 100% dari naskah yang dipakai untuk menguji (<em>data uji</em>). Berkas skripsi mahasiswa luar tidak pernah dicampurkan ke data latihan, menjamin keabsahan dan keaslian skor akurasi 97,22%.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori 2: OpenXML, Arsitektur Dokumen, & Rekayasa Word -->
+                <div class="bento-card col-span-12">
+                    <div class="card-header-clean">
+                        <div class="pill-badge badge-blue">KATEGORI 2 &bull; REKAYASA DOKUMEN OPENXML</div>
+                        <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary-blue);">Struktur Biner Word & Manipulasi Non-Destruktif</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
+                        <!-- OpenXML DOM -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">OpenXML DOM (ISO/IEC 29500)</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Struktur Dokumen Word</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Format standar dunia untuk berkas Microsoft Word (.docx). Dokumen Word sebenarnya adalah susunan kode XML terstruktur yang dibungkus rapi. Sistem membaca dokumen sebagai struktur pohon objek (DOM), sehingga dapat mengenali letak paragraf, tabel, gambar, dan nomor halaman langsung dari kode sumber aslinya tanpa merusak naskah.
+                            </p>
+                        </div>
+
+                        <!-- Non-Destructive In-Place Transformation -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Non-Destructive In-Place Transformation</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Keamanan Isi Naskah</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Prinsip keamanan dokumen di mana sistem hanya menyetel aturan tata letak (seperti ukuran margin, jarak spasi baris, dan jenis font) pada lapisan struktur berkas, tanpa pernah mengetik ulang atau membuang teks naskah. Kalimat asli karya mahasiswa dijamin 100% utuh dan tidak akan hilang atau berubah maknanya.
+                            </p>
+                        </div>
+
+                        <!-- Native Word Fields -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">️ Native Word Fields (STYLEREF & SEQ)</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Penomoran Dinamis Word</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Instruksi penomoran dinamis bawaan Microsoft Word (seperti kode <code>STYLEREF</code> dan <code>SEQ</code>). Alih-alih mengetik angka bab atau nomor gambar secara manual (yang rawan berantakan saat halaman bertambah), sistem menyematkan kode dinamis resmi Word agar nomor urut (contoh: Gambar 1.1, Gambar 2.1) selalu sinkron dengan babnya dan dapat diperbarui otomatis dengan tombol keyboard F9.
+                            </p>
+                        </div>
+
+                        <!-- Multilevel List & Outline Level -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);"> Multilevel List & Outline Level (w:outlineLvl)</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Navigasi & Daftar Isi</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Penataan hierarki judul skripsi agar terhubung rapi ke panel navigasi Word. Judul Bab diatur sebagai Level 1, Sub-Bab sebagai Level 2 (contoh: 1.1), dan Anak Sub-Bab sebagai Level 3 (contoh: 1.1.1). Dengan penataan ini, daftar isi dan daftar gambar skripsi dapat dibuat otomatis oleh Microsoft Word hanya dengan sekali klik.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori 3: Multi-Agent System & Quality Assurance -->
+                <div class="bento-card col-span-12">
+                    <div class="card-header-clean">
+                        <div class="pill-badge badge-blue">KATEGORI 3 &bull; MULTI-AGENT SYSTEM & PENJAMINAN MUTU</div>
+                        <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary-blue);">Kolaborasi Agen & Quality Gates</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
+                        <!-- Multi-Agent System -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Multi-Agent System (MAS)</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Arsitektur Kolaborasi</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Pendekatan di mana tugas berat standarisasi skripsi dibagi ke dalam tiga agen perangkat lunak khusus yang saling bekerja sama:
+                                <br>&bull; <strong>Agent 1 (Inspector):</strong> Membaca dan mengelompokkan peran paragraf menggunakan kecerdasan buatan.
+                                <br>&bull; <strong>Agent 2 (Quality Critic):</strong> Memeriksa kebenaran susunan bab sesuai pedoman akademik kampus.
+                                <br>&bull; <strong>Agent 3 (Formatter Actuator):</strong> Menerapkan format fisik Word secara rapi tanpa merusak teks asli.
+                            </p>
+                        </div>
+
+                        <!-- Two-Tier Quality Gates -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Two-Tier Quality Gates (SQA Tier 1 & 2)</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Pengawasan Mutu</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Sistem pengawasan kualitas dua tahap untuk menjamin naskah bebas dari kesalahan format:
+                                <br>&bull; <strong>Tier 1 Gatekeeper (Audit Struktur):</strong> Memeriksa apakah urutan bab sudah runtut sebelum dokumen mulai diformat.
+                                <br>&bull; <strong>Tier 2 Acceptance Gate (Audit Fisik Jadi):</strong> Menguji 10 aturan tata letak format baku (seperti margin 4-3-3-3 cm, ukuran kertas A4, dan penomoran Romawi/Latin) pada dokumen hasil sebelum diserahkan ke mahasiswa.
+                            </p>
+                        </div>
+
+                        <!-- Monotonic Rules Validation -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Monotonic Rules Validation</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Validasi Akademik</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Aturan validasi akademik yang memastikan nomor bab skripsi selalu berjalan maju dan teratur (Bab 1 &rarr; Bab 2 &rarr; Bab 3 &rarr; Bab 4 &rarr; Bab 5). Jika di dalam teks isi paragraf ada kalimat kutipan yang menyebutkan kata "Bab 2", aturan ini menjaga agar kalimat tersebut tidak salah diangkat menjadi judul bab baru.
+                            </p>
+                        </div>
+
+                        <!-- Direct OpenXML Node Binding -->
+                        <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: 8px; padding: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem;">
+                                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-heading);">Direct OpenXML Node Binding</div>
+                                <span class="pill-badge badge-blue" style="font-size: 0.65rem;">Keandalan Data Agen</span>
+                            </div>
+                            <p style="font-size: 0.76rem; color: var(--text-body); line-height: 1.45;">
+                                Metode pencatatan data antar-agen di mana label persetujuan dari Agent 2 langsung ditandai pada kode internal paragraf dokumen Word. Dengan metode ini, identitas paragraf tidak akan hilang atau tertukar saat dokumen disisipkan jeda halaman (<em>section break</em>) oleh Agent 3.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>

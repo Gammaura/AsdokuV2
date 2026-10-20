@@ -1,0 +1,217 @@
+
+            <!-- Dropzone & Upload Box -->
+            <div class="bento-card" style="margin-bottom: 1rem;">
+                <div class="card-header-clean">
+                    <div class="card-title-group">
+                        <h2 class="card-title-text">Unggah Dokumen Word (.docx)</h2>
+                    </div>
+                    <div class="pill-badge badge-blue">Isi Teks Tetap Aman</div>
+                </div>
+
+                <div class="dropzone-container" id="dropzone" onclick="document.getElementById('file-input').click()">
+                    <div class="dropzone-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                    </div>
+                    <div class="dropzone-title" id="dz-title">Klik atau tarik berkas Word (.docx) ke sini</div>
+                    <div class="dropzone-subtitle" id="dz-subtitle">Bisa untuk berkas skripsi, proposal, atau laporan magang</div>
+                    <input type="file" id="file-input" accept=".docx" style="display: none;" onchange="handleFileSelect(event)">
+                    <div id="file-info" style="display: none;"></div>
+                </div>
+
+                <button class="btn-primary" id="btn-process" onclick="processDocument()" disabled>
+                    <span id="btn-text">Mulai Rapikan Dokumen</span>
+                    <span id="btn-spinner" style="display: none;">Sedang Merapikan Dokumen...</span>
+                </button>
+            </div>
+
+            <!-- 3 Uniform Agent Nodes (Uniform Grid) -->
+            <div class="bento-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 1rem;">
+                <!-- Agent 1 -->
+                <div class="agent-node-card" id="card-agent-1">
+                    <div class="agent-node-header">
+                        <div class="agent-title-box">
+                            <div class="agent-avatar"><img src="/agent1.png" alt="Agent 1: Inspector"></div>
+                            <div>
+                                <div class="agent-name">Agent 1: Inspector</div>
+                                <div class="agent-role">Pendeteksi Bagian Dokumen</div>
+                            </div>
+                        </div>
+                        <span class="agent-status-badge status-idle" id="badge-agent-1">Siap</span>
+                    </div>
+                    <p class="agent-desc">
+                        Membaca naskah dan mengenali mana judul bab, sub-bab, maupun isi teks secara otomatis.
+                    </p>
+                    <div class="agent-specs">
+                        <span class="agent-chip">Deteksi Judul & Bab</span>
+                        <span class="agent-chip">Paham Isi Teks</span>
+                        <span class="agent-chip">Proses Cepat</span>
+                    </div>
+                </div>
+
+                <!-- Agent 2 -->
+                <div class="agent-node-card" id="card-agent-2">
+                    <div class="agent-node-header">
+                        <div class="agent-title-box">
+                            <div class="agent-avatar"><img src="/agent2.png" alt="Agent 2: Quality Critic"></div>
+                            <div>
+                                <div class="agent-name">Agent 2: Quality Critic</div>
+                                <div class="agent-role">Pemeriksa & Pengoreksi Aturan</div>
+                            </div>
+                        </div>
+                        <span class="agent-status-badge status-idle" id="badge-agent-2">Siap</span>
+                    </div>
+                    <p class="agent-desc">
+                        Memastikan urutan Bab 1 sampai 5 sudah benar dan memperbaiki jika ada bagian yang salah dikenali.
+                    </p>
+                    <div class="agent-specs">
+                        <span class="agent-chip">Urutan Bab Rapi</span>
+                        <span class="agent-chip">Koreksi Otomatis</span>
+                        <span class="agent-chip">Sesuai Aturan Kampus</span>
+                    </div>
+                </div>
+
+                <!-- Agent 3 -->
+                <div class="agent-node-card" id="card-agent-3">
+                    <div class="agent-node-header">
+                        <div class="agent-title-box">
+                            <div class="agent-avatar"><img src="/agent3.png" alt="Agent 3: Formatter"></div>
+                            <div>
+                                <div class="agent-name">Agent 3: Formatter</div>
+                                <div class="agent-role">Penata Format Dokumen</div>
+                            </div>
+                        </div>
+                        <span class="agent-status-badge status-idle" id="badge-agent-3">Siap</span>
+                    </div>
+                    <p class="agent-desc">
+                        Mengatur batas margin 4-3-3-3 cm, nomor halaman, spasi, dan tabel tanpa mengubah tulisan asli Anda.
+                    </p>
+                    <div class="agent-specs">
+                        <span class="agent-chip">Batas Margin 4-3-3-3</span>
+                        <span class="agent-chip">Nomor Halaman Rapi</span>
+                        <span class="agent-chip">Teks Asli Tetap Aman</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Execution Results Area -->
+            <div id="results-area" style="display: none;">
+                <!-- 5 Stat Metrics -->
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-val" id="stat-time">0.0s</div>
+                        <div class="stat-lbl">Waktu Eksekusi</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" id="stat-paras">0</div>
+                        <div class="stat-lbl">Paragraf Diproses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" id="stat-corrections" style="color: #a84b16;">0</div>
+                        <div class="stat-lbl">Anomali Terkoreksi</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" id="stat-chapters" style="color: var(--emerald-text);">5 Bab</div>
+                        <div class="stat-lbl">Bab Tervalidasi</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" id="stat-sqa" style="color: var(--emerald-text);">100%</div>
+                        <div class="stat-lbl">Skor Kepatuhan SQA</div>
+                    </div>
+                </div>
+
+                <!-- SQA Checklist & Download Row -->
+                <div class="bento-grid" style="grid-template-columns: repeat(12, 1fr); gap: 1rem; margin-bottom: 1rem; align-items: stretch;">
+                    <!-- SQA Checklist (7 Col) -->
+                    <div class="bento-card col-span-7" style="display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
+                        <div>
+                            <div class="card-header-clean" style="margin-bottom: 0.85rem;">
+                                <span style="font-weight: 700; color: var(--text-heading); font-size: 0.95rem;">Pemeriksaan Standar Format Kampus</span>
+                                <span class="pill-badge badge-emerald" id="badge-sqa-status">100% Sesuai Aturan</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.78rem;">
+                                <div style="background: #fbfbfa; padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid var(--border-card); display: flex; align-items: flex-start; gap: 0.45rem;">
+                                    <span style="color: #059669; font-weight: 800; font-size: 0.85rem; line-height: 1.1;">✓</span>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-heading);">Batas Margin Kertas</div>
+                                        <div style="color: var(--text-muted); font-size: 0.72rem;">Kiri 4 cm, Atas/Kanan/Bawah 3 cm</div>
+                                    </div>
+                                </div>
+                                <div style="background: #fbfbfa; padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid var(--border-card); display: flex; align-items: flex-start; gap: 0.45rem;">
+                                    <span style="color: #059669; font-weight: 800; font-size: 0.85rem; line-height: 1.1;">✓</span>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-heading);">Ukuran & Orientasi</div>
+                                        <div style="color: var(--text-muted); font-size: 0.72rem;">A4 Tegak (21.0 × 29.7 cm)</div>
+                                    </div>
+                                </div>
+                                <div style="background: #fbfbfa; padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid var(--border-card); display: flex; align-items: flex-start; gap: 0.45rem;">
+                                    <span style="color: #059669; font-weight: 800; font-size: 0.85rem; line-height: 1.1;">✓</span>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-heading);">Tipografi & Spasi</div>
+                                        <div style="color: var(--text-muted); font-size: 0.72rem;">Times New Roman 12pt, Spasi 1.15</div>
+                                    </div>
+                                </div>
+                                <div style="background: #fbfbfa; padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid var(--border-card); display: flex; align-items: flex-start; gap: 0.45rem;">
+                                    <span style="color: #059669; font-weight: 800; font-size: 0.85rem; line-height: 1.1;">✓</span>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-heading);">Header Halaman</div>
+                                        <div style="color: var(--text-muted); font-size: 0.72rem;">Universitas Esa Unggul Kanan Atas</div>
+                                    </div>
+                                </div>
+                                <div style="background: #fbfbfa; padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid var(--border-card); display: flex; align-items: flex-start; gap: 0.45rem;">
+                                    <span style="color: #059669; font-weight: 800; font-size: 0.85rem; line-height: 1.1;">✓</span>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-heading);">Penomoran Ganda</div>
+                                        <div style="color: var(--text-muted); font-size: 0.72rem;">Romawi (Depan) & Angka Latin (Isi)</div>
+                                    </div>
+                                </div>
+                                <div style="background: #fbfbfa; padding: 0.5rem 0.65rem; border-radius: 8px; border: 1px solid var(--border-card); display: flex; align-items: flex-start; gap: 0.45rem;">
+                                    <span style="color: #059669; font-weight: 800; font-size: 0.85rem; line-height: 1.1;">✓</span>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-heading);">Tabel & Caption</div>
+                                        <div style="color: var(--text-muted); font-size: 0.72rem;">Garis Horizontal APA 7 & Nomor Bab</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download Card (5 Col) -->
+                    <div class="bento-card col-span-5" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(180deg, #fbfdfb 0%, #f1f8f3 100%); border: 1px solid #cce3d0; padding: 1.4rem 1.25rem; margin-bottom: 0;">
+                        <div style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #047857; background: #d1fae5; border: 1px solid #a7f3d0; padding: 0.25rem 0.75rem; border-radius: 999px; margin-bottom: 0.65rem;">
+                            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #059669;"></span>
+                            Format Selesai & Terverifikasi
+                        </div>
+                        <div style="font-size: 1.15rem; font-weight: 800; color: #14532d; margin-bottom: 0.25rem;">Dokumen Siap Diunduh</div>
+                        <div style="font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; color: #2d6a4f; background: rgba(255,255,255,0.85); border: 1px solid rgba(45,106,79,0.2); padding: 0.35rem 0.75rem; border-radius: 6px; margin-bottom: 1rem; max-width: 90%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" id="out-filename-label">hasil_skripsi.docx</div>
+                        <a href="#" id="btn-download" class="btn-download-clean" style="width: 100%; max-width: 280px; box-shadow: 0 4px 14px rgba(0,0,0,0.12);" download>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.35rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span>Unduh Dokumen (.docx)</span>
+                        </a>
+                        <div style="font-size: 0.7rem; color: #52796f; margin-top: 0.65rem;">Sesuai Standar Pedoman Skripsi UEU 2018</div>
+                    </div>
+                </div>
+
+                <!-- Log Audit Anomali (Tabel Transparansi) -->
+                <div class="bento-card">
+                    <div class="card-header-clean">
+                        <span style="font-weight: 700; color: var(--text-heading);"> Daftar Bagian yang Diperbaiki Otomatis</span>
+                        <span class="pill-badge badge-blue">Diperbaiki Otomatis</span>
+                    </div>
+                    <div style="max-height: 180px; overflow-y: auto; border: 1px solid var(--border-card); border-radius: 8px;">
+                        <table class="clean-table" id="corrections-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">No.</th>
+                                    <th>Potongan Teks Asli</th>
+                                    <th style="width: 140px;">Tebakan Awal</th>
+                                    <th style="width: 140px;">Hasil Perbaikan</th>
+                                    <th>Alasan Perbaikan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="corrections-tbody">
+                                <tr><td colspan="5" style="text-align: center; color: #9c9a95;">Belum ada data eksekusi</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>

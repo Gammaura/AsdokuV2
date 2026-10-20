@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.bak
+
+# Caches and virtual environments
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+
+# Logs and runtime files
+*.log
+scratch/
+
+# Loose root docx test files
+/*.docx
+
+# Temporary upload and output files
+data/uploads/*
+!data/uploads/.gitkeep
+output/*.docx
+output/*.pdf
+!output/pengujian/*
+output/eval_report_*.md
+
+# OS generated files
+.DS_Store
+Thumbs.db
