@@ -34,7 +34,7 @@ Sasaran bisnis dan akademik dari implementasi sistem ASDOKU dirumuskan menggunak
 
 | ID | Kategori Objektif | Deskripsi Sasaran Bisnis (SMART) | Indikator Keberhasilan (*Success Metrics*) | Target Capaian |
 | :--- | :--- | :--- | :--- | :--- |
-| **BO-01** | **Akurasi Deteksi Struktur (NLP)** | Mencapai tingkat ketepatan klasifikasi struktur paragraf (Judul Bab, Sub-bab, Paragraf Isi, Tabel, Gambar, Formula, *Frontmatter*) menggunakan ekstraksi fitur hibrida NLP (*TF-IDF*) dan metadata *OpenXML*. | *Accuracy*, *Macro F1-Score*, dan *Weighted F1-Score* pada evaluasi model *Machine Learning*. | Akurasi $\ge$ 90% (Aktual: 93.71%) <br>Macro F1 $\ge$ 0.85 (Aktual: 0.884) <br>Weighted F1 $\ge$ 0.90 (Aktual: 0.936) |
+| **BO-01** | **Akurasi Deteksi Struktur (NLP)** | Mencapai tingkat ketepatan klasifikasi struktur paragraf (Judul Bab, Sub-bab, Paragraf Isi, Tabel, Gambar, Formula, *Frontmatter*) menggunakan ekstraksi fitur hibrida NLP (*TF-IDF*) dan metadata *OpenXML*. | *Accuracy*, *Macro F1-Score*, dan *Weighted F1-Score* pada evaluasi model *Machine Learning*. | Akurasi $\ge$ 90% (Puncak Evaluasi: **97,22%**, Baseline: 93,71%) <br>Weighted F1 $\ge$ 0,90 (Puncak: **0,97**, Baseline: 0,936) |
 | **BO-02** | **Kepatuhan Mutu Regulasi (SQA)** | Menjamin bahwa seluruh dokumen `.docx` hasil pemformatan otomatis memenuhi 8 kriteria mutu tata letak SK Rektor UEU dan standar tabel APA 7 tanpa merusak isi teks asli penulis. | Persentase skor kelulusan audit pada *SQA Tier 2 Artifact Acceptance Gate* terhadap 5 dokumen uji emas (*Gold Datasets* P1–P5). | 100.0% PASS |
 | **BO-03** | **Efisiensi Waktu Pemrosesan** | Memangkas durasi perbaikan tata letak dokumen akademik dari pengerjaan manual berjam-jam menjadi pemrosesan otomatis instan melalui antarmuka web. | Rata-rata waktu eksekusi *end-to-end* (*processing latency*) dari saat dokumen diunggah hingga siap diunduh. | $\le$ 2.0 detik per dokumen (Aktual: 0.65–1.45 detik) |
 | **BO-04** | **Adaptabilitas Sistem (*Active Learning*)** | Meningkatkan kemampuan generalisasi model terhadap variasi naskah akademik baru (seperti Laporan Magang/MBKM) melalui penyimpanan koreksi otomatis dari *Quality Critic Agent*. | Jumlah sampel anomali yang berhasil dikoreksi pada *SQA Tier 1* dan diintegrasikan ke dalam siklus *Continuous Retraining* setelah mencapai ambang batas 5 sampel koreksi baru. | Penurunan *error* deteksi sebesar $\ge$ 40% (Akurasi naik hingga 97%) pasca-*retraining* |
@@ -195,7 +195,7 @@ Sistem ASDOKU dinyatakan selesai, layak, dan dapat diterima (*Accepted*) untuk k
 
 ### 10.1. Kriteria Penerimaan Model NLP & Machine Learning (SQA Tier 1)
 - [x] Pipeline ekstraksi fitur berhasil mengekstraksi 420 dimensi fitur gabungan (400 TF-IDF + 20 OpenXML) tanpa kegagalan (*runtime error*).
-- [x] Model utama (Random Forest) mencapai nilai Accuracy minimal 90% (aktual 93.71%) dan mengungguli model pembanding Logistic Regression (88.57%) pada pengujian dataset evaluasi.
+- [x] Model utama (Random Forest) mencapai nilai Accuracy minimal 90% (aktual baseline 93,71% hingga puncak evaluasi 97,22%) dan mengungguli model pembanding Logistic Regression (88,57%) pada pengujian dataset evaluasi.
 - [x] Agent 2 (*Quality Critic*) berhasil mendeteksi dan memperbaiki 100% anomali urutan bab monotonik, melindungi zona sub-bab 1.7, serta mengenali seluruh bab pada dokumen Skripsi maupun Laporan Magang.
 
 ### 10.2. Kriteria Penerimaan Mutu Artifak Dokumen (SQA Tier 2 — 8 Kriteria Mutu UEU)
