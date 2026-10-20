@@ -14,17 +14,28 @@ env/
 # Logs and runtime files
 *.log
 scratch/
+App/scratch/
 
 # Loose root docx test files
 /*.docx
+App/*.docx
+!App/Dataset Asdoku/*.docx
+!App/data/*.docx
+!App/data/**/*.docx
 
 # Temporary upload and output files
 data/uploads/*
 !data/uploads/.gitkeep
+App/data/uploads/*
+!App/data/uploads/.gitkeep
 output/*.docx
 output/*.pdf
 !output/pengujian/*
 output/eval_report_*.md
+App/output/*.docx
+App/output/*.pdf
+!App/output/pengujian/*
+App/output/eval_report_*.md
 
 # OS generated files
 .DS_Store
