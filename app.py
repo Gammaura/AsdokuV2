@@ -26,7 +26,11 @@ from src.agents.critic import QualityCriticAgent
 from src.agents.formatter import FormattingActuatorAgent
 from src.active_learning import ActiveLearningManager
 
-app = FastAPI(title="Asdoku MAS Tester", description="Web Pengujian Multi-Agent System Dokumen Akademik UEU")
+app = FastAPI(
+    title="Asdoku MAS Tester",
+    description="Web Pengujian Multi-Agent System Dokumen Akademik UEU",
+    redirect_slashes=False
+)
 
 IS_VERCEL = bool(os.environ.get("VERCEL"))
 UPLOAD_DIR = "/tmp/uploads" if IS_VERCEL else "data/uploads"
