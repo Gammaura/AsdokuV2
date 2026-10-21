@@ -4,22 +4,23 @@
 > **Peneliti:** Arditya Adjie Rosandi (NIM: 20230801274)  
 > **Program Studi:** Teknik Informatika, Fakultas Ilmu Komputer — Universitas Esa Unggul  
 > **Regulasi Standar:** SK Rektor UEU No. 5 Tahun 2018 (Pedoman Tata Tulis Skripsi & Tugas Akhir)  
-> **Status Dokumen:** Fase 1 s/d Fase 6 Selesai & Terverifikasi Penuh Tanpa Placeholder
+> **Status Dokumen:** Fase 1 s/d Fase 7 Selesai & Terverifikasi Penuh Tanpa Placeholder
 
 ---
 
-## 1. Struktur Folder Fase Kerja yang Telah Selesai (Fase 1 s/d Fase 6)
+## 1. Struktur Folder Fase Kerja yang Telah Selesai (Fase 1 s/d Fase 7)
 
 Seluruh dokumen dan artifak riset yang telah disusun telah dirapikan ke dalam folder masing-masing fase:
 
 | Fase | Nama & Fokus Fase Kerja | Alat Bantu (*Tools*) | Berkas Utama (*Deliverables*) | Lokasi Folder |
 | :---: | :--- | :--- | :--- | :--- |
 | **Fase 1** | **Ideasi, Formulasi PICOS & Research Questions** | Gemini / ChatGPT / DeepSeek | • [PICOS_RQ.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%201%20-%20Ideasi%20&%20PICOS/PICOS_RQ.md)<br/>• `Fase_1_Dokumen_Awal.docx` | [Fase 1 - Ideasi & PICOS/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%201%20-%20Ideasi%20&%20PICOS/) |
-| **Fase 2** | **Penelusuran Literatur & Evidence Matrix** | Scopus AI, Elicit.com, Mendeley | • [Evidence_Matrix_Scopus.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%202%20-%20Penelusuran%20Literatur/Evidence_Matrix_Scopus.md)<br/>• [Scopus_AI_Research_Analytics.pdf](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%202%20-%20Penelusuran%20Literatur/Scopus_AI_Research_Analytics.pdf) | [Fase 2 - Penelusuran Literatur/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%202%20-%20Penelusuran%20Literatur/) |
-| **Fase 3** | **Penyusunan Dokumen BRD & SLR** | IEEE Template + Mendeley | • [BRD_Business_Requirements_Document.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%203%20-%20Dokumen%20BRD%20&%20SLR/BRD_Business_Requirements_Document.md)<br/>• [SLR_Systematic_Literature_Review.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%203%20-%20Dokumen%20BRD%20&%20SLR/SLR_Systematic_Literature_Review.md) | [Fase 3 - Dokumen BRD & SLR/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%203%20-%20Dokumen%20BRD%20&%20SLR/) |
-| **Fase 4** | **Analisis Gap & Penetapan Judul Final** | LLM + Matriks Gap FR × SLR | • [Gap_Analysis_dan_Penetapan_Judul.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%204%20-%20Analisis%20Gap%20&%20Judul%20Final/Gap_Analysis_dan_Penetapan_Judul.md) | [Fase 4 - Analisis Gap & Judul Final/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%204%20-%20Analisis%20Gap%20&%20Judul%20Final/) |
-| **Fase 5** | **Uji Kesesuaian BRD×SLR & Kritik Keras** | Prompt 6B (Dosen Skeptis vs Tech Lead) | • [Audit_Kritis_BRD_SLR_Portofolio.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%205%20-%20Audit%20Kesesuaian%20&%20Kritik%20Keras/Audit_Kritis_BRD_SLR_Portofolio.md) | [Fase 5 - Audit Kesesuaian & Kritik Keras/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%205%20-%20Audit%20Kesesuaian%20&%20Kritik%20Keras/) |
-| **Fase 6** | **Spesifikasi Sistem & Visual Diagram** | Draw.io, Mermaid.js | • [FLOWCHART_ARSITEKTUR.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%206%20-%20Spesifikasi%20Sistem%20&%20Diagram/FLOWCHART_ARSITEKTUR.md)<br/>• `flowchart_vertikal_detail.drawio`<br/>• `flowchart_vertikal_detail.mmd`<br/>• `flowchart_horizontal_slide.drawio`<br/>• `flowchart_horizontal_slide.mmd` | [Fase 6 - Spesifikasi Sistem & Diagram/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%206%20-%20Spesifikasi%20Sistem%20&%20Diagram/) |
+| **Fase 2** | **Penelusuran Literatur & Evidence Matrix** | Scopus AI, Elicit.com, Mendeley | • [Evidence_Matrix_Scopus.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%202%20-%20Penelusuran%20Literatur%20&%20Evidence%20Matrix/Evidence_Matrix_Scopus.md)<br/>• [Scopus_AI_Research_Analytics.pdf](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%202%20-%20Penelusuran%20Literatur%20&%20Evidence%20Matrix/Scopus_AI_Research_Analytics.pdf) | [Fase 2 - Penelusuran Literatur & Evidence Matrix/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%202%20-%20Penelusuran%20Literatur%20&%20Evidence%20Matrix/) |
+| **Fase 3** | **Penyusunan Dokumen Kebutuhan Bisnis (BRD)** | IEEE / Software Eng Template | • [BRD_Business_Requirements_Document.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%203%20-%20Dokumen%20BRD/BRD_Business_Requirements_Document.md) | [Fase 3 - Dokumen BRD/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%203%20-%20Dokumen%20BRD/) |
+| **Fase 4** | **Systematic Literature Review (SLR)** | Protokol PRISMA 2020 + Mendeley | • [SLR_Systematic_Literature_Review.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%204%20-%20Dokumen%20SLR/SLR_Systematic_Literature_Review.md) | [Fase 4 - Dokumen SLR/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%204%20-%20Dokumen%20SLR/) |
+| **Fase 5** | **Analisis Gap & Penetapan Judul Final** | LLM + Matriks Gap FR × SLR | • [Gap_Analysis_dan_Penetapan_Judul.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%205%20-%20Analisis%20Gap%20&%20Penetapan%20Judul/Gap_Analysis_dan_Penetapan_Judul.md) | [Fase 5 - Analisis Gap & Penetapan Judul/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%205%20-%20Analisis%20Gap%20&%20Penetapan%20Judul/) |
+| **Fase 6** | **Uji Kesesuaian BRD×SLR & Kritik Keras** | Prompt 6B (Dosen Skeptis vs Tech Lead) | • [Audit_Kritis_BRD_SLR_Portofolio.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%206%20-%20Uji%20Kesesuaian%20&%20Kritik%20Keras/Audit_Kritis_BRD_SLR_Portofolio.md) | [Fase 6 - Uji Kesesuaian & Kritik Keras/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%206%20-%20Uji%20Kesesuaian%20&%20Kritik%20Keras/) |
+| **Fase 7** | **Spesifikasi Sistem & Visual Diagram** | Draw.io, Mermaid.js | • [FLOWCHART_ARSITEKTUR.md](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%207%20-%20Spesifikasi%20Sistem%20&%20Diagram/FLOWCHART_ARSITEKTUR.md)<br/>• `flowchart_vertikal_detail.drawio`<br/>• `flowchart_vertikal_detail.mmd`<br/>• `flowchart_horizontal_slide.drawio`<br/>• `flowchart_horizontal_slide.mmd` | [Fase 7 - Spesifikasi Sistem & Diagram/](file:///root/Gammaura/Skripsi/Document/Kapita_Selekta/Fase%207%20-%20Spesifikasi%20Sistem%20&%20Diagram/) |
 
 ---
 
@@ -37,6 +38,6 @@ Seluruh dokumen pada repositori ini telah diaudit menyeluruh:
 
 ## 3. Agenda Tahap Berikutnya (Akan Dibuat Selanjutnya)
 
-* **Fase 7:** Drafting Naskah Skripsi Bab I–III & Penyusunan Slide Ujian Seminar Proposal (Sempro 16:9).
-* **Fase 8:** Eksperimen Lanjutan Skripsi Utuh (Bab I–V) & Uji Similaritas Turnitin $\le 20\%$.
-* **Fase 9:** Pembuatan Poster A0, Penulisan Artikel Jurnal Ilmiah (IEEE/SINTA), dan Finalisasi Portofolio Repositori.
+* **Fase 8:** Drafting Naskah Skripsi Bab I–III & Penyusunan Slide Ujian Seminar Proposal (Sempro 16:9).
+* **Fase 9:** Eksperimen Lanjutan Skripsi Utuh (Bab I–V) & Uji Similaritas Turnitin $\le 20\%$.
+* **Fase 10:** Pembuatan Poster A0, Penulisan Artikel Jurnal Ilmiah (IEEE/SINTA), dan Finalisasi Portofolio Repositori.
